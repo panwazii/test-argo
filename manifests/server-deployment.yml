@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: test-app
   name: server-deployment
 spec:
   replicas: 3
@@ -23,6 +24,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: test-app
   name: server-service-nodeport
 spec:
   type: NodePort
@@ -36,6 +38,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: test-app
   name: server-service
 spec:
   type: ClusterIP
