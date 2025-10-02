@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-app
+  namespace: argocd   # Argo CD control plane namespace
+spec:
+  project: default
+
+  source:
+    repoURL: 'https://github.com/panwazii/test-argo.git'
+    targetRevision: main
+    path: manifests
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: test-app   # namespace where the workloads will run
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
